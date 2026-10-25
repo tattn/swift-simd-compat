@@ -23,6 +23,12 @@ struct VectorFunctionsTests {
             #expect(SIMDCompatPortable.simd_max(a, b) == simd.simd_max(a, b))
             #expect(SIMDCompatPortable.simd_clamp(a, -abs(b), abs(b)) == simd.simd_clamp(a, -abs(b), abs(b)))
             #expect(isClose(SIMDCompatPortable.simd_mix(a, b, t), simd.simd_mix(a, b, t)))
+            let edge0 = SIMD3(repeating: inputs.scalar(in: -2...0))
+            let edge1 = SIMD3(repeating: inputs.scalar(in: 0.5...2))
+            #expect(isClose(
+                SIMDCompatPortable.simd_smoothstep(edge0, edge1, a),
+                simd.simd_smoothstep(edge0, edge1, a)
+            ))
             #expect(SIMDCompatPortable.simd_reduce_max(a) == simd.simd_reduce_max(a))
             #expect(SIMDCompatPortable.simd_reduce_min(a) == simd.simd_reduce_min(a))
 
@@ -31,6 +37,10 @@ struct VectorFunctionsTests {
             let high = inputs.scalar(in: 0...2)
             #expect(SIMDCompatPortable.simd_clamp(x, low, high) == simd.simd_clamp(x, low, high))
             #expect(isClose(SIMDCompatPortable.simd_mix(x, low, high), simd.simd_mix(x, low, high)))
+            #expect(isClose(
+                SIMDCompatPortable.simd_smoothstep(low, high + 0.5, x),
+                simd.simd_smoothstep(low, high + 0.5, x)
+            ))
         }
     }
 

@@ -84,6 +84,18 @@ public func simd_mix<Scalar: FloatingPoint>(_ a: Scalar, _ b: Scalar, _ t: Scala
 }
 
 @inlinable
+public func simd_smoothstep<V: SIMD>(_ edge0: V, _ edge1: V, _ x: V) -> V where V.Scalar: FloatingPoint {
+    let t = simd_clamp((x - edge0) / (edge1 - edge0), V(repeating: 0), V(repeating: 1))
+    return t * t * (3 - 2 * t)
+}
+
+@inlinable
+public func simd_smoothstep<Scalar: FloatingPoint>(_ edge0: Scalar, _ edge1: Scalar, _ x: Scalar) -> Scalar {
+    let t = simd_clamp((x - edge0) / (edge1 - edge0), 0, 1)
+    return t * t * (3 - 2 * t)
+}
+
+@inlinable
 public func simd_reduce_max<V: SIMD>(_ v: V) -> V.Scalar where V.Scalar: FloatingPoint {
     v.max()
 }
