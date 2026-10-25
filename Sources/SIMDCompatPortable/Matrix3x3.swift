@@ -19,6 +19,16 @@ public struct simd_float3x3: Equatable, Sendable {
     }
 
     @inlinable
+    public init(rows: [SIMD3<Float>]) {
+        precondition(rows.count == 3, "simd_float3x3 needs 3 rows")
+        self.init(
+            SIMD3(rows[0].x, rows[1].x, rows[2].x),
+            SIMD3(rows[0].y, rows[1].y, rows[2].y),
+            SIMD3(rows[0].z, rows[1].z, rows[2].z)
+        )
+    }
+
+    @inlinable
     public init(diagonal: SIMD3<Float>) {
         self.init(
             SIMD3(diagonal.x, 0, 0),
@@ -97,6 +107,16 @@ public struct simd_float3x3: Equatable, Sendable {
     @inlinable
     public static func - (lhs: simd_float3x3, rhs: simd_float3x3) -> simd_float3x3 {
         simd_float3x3(lhs.columns.0 - rhs.columns.0, lhs.columns.1 - rhs.columns.1, lhs.columns.2 - rhs.columns.2)
+    }
+
+    @inlinable
+    public static func += (lhs: inout simd_float3x3, rhs: simd_float3x3) {
+        lhs = lhs + rhs
+    }
+
+    @inlinable
+    public static func -= (lhs: inout simd_float3x3, rhs: simd_float3x3) {
+        lhs = lhs - rhs
     }
 
     @inlinable

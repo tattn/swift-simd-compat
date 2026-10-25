@@ -30,7 +30,7 @@ let turned = rotation.act(SIMD3(1, 0, 0))
 A part of `simd` for `Float`, added as code that depends on this package needs it:
 
 - Vectors (`SIMD2`/`SIMD3`/`SIMD4` and any other `SIMD` of floating-point scalars): `simd_dot`, `simd_length`, `simd_length_squared`, `simd_distance`, `simd_distance_squared`, `simd_normalize`, `simd_cross`, `simd_abs`, `simd_min`, `simd_max`, `simd_clamp`, `simd_mix`, `simd_smoothstep`, `simd_reduce_min`, `simd_reduce_max`, and the unprefixed `dot`, `length`, `length_squared`, `distance`, `distance_squared`, `normalize`, `cross`
-- `simd_float3x3` and `simd_float4x4` (`float3x3`, `float4x4`): construction from columns, a diagonal or a quaternion, subscripts, `transpose`, `inverse`, `determinant`, `+`, `-`, `*`, `matrix_identity_float3x3`, `matrix_identity_float4x4`, `simd_mul`, `simd_transpose`, `simd_inverse`, `simd_determinant`
+- `simd_float3x3` and `simd_float4x4` (`float3x3`, `float4x4`): construction from columns, a diagonal or a quaternion (and from rows for `simd_float3x3`), subscripts, `transpose`, `inverse`, `determinant`, `+`, `-`, `*` (and `+=`, `-=` for `simd_float3x3`), `matrix_identity_float3x3`, `matrix_identity_float4x4`, `simd_mul`, `simd_transpose`, `simd_inverse`, `simd_determinant`
 - `simd_quatf`: construction from components, an angle and axis, two vectors, or a rotation matrix, `real`, `imag`, `length`, `normalized`, `conjugate`, `inverse`, `angle`, `axis`, `act(_:)`, `+`, `-`, `*`, `/`, `simd_slerp`, `simd_mul`, `simd_act`, `simd_inverse`, `simd_conjugate`, `simd_normalize`, `simd_length`, `simd_dot`, `simd_angle`, `simd_axis`
 - `simd_float2`, `simd_float3`, `simd_float4`
 

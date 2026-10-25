@@ -22,6 +22,16 @@ struct MatrixTests {
             #expect(isClose(portable(a) - portable(b), a - b))
             #expect(isClose(portable(a) * scalar, a * scalar))
             #expect(isClose(SIMDCompatPortable.simd_float3x3(portable(rotation)), simd.simd_float3x3(rotation)))
+            let rows = [inputs.vector3(), inputs.vector3(), inputs.vector3()]
+            #expect(isClose(SIMDCompatPortable.simd_float3x3(rows: rows), simd.simd_float3x3(rows: rows)))
+            var portableSum = portable(a)
+            var appleSum = a
+            portableSum += portable(b)
+            appleSum += b
+            #expect(isClose(portableSum, appleSum))
+            portableSum -= portable(a)
+            appleSum -= a
+            #expect(isClose(portableSum, appleSum))
         }
     }
 
