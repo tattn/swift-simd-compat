@@ -129,3 +129,13 @@ public func normalize<V: SIMD>(_ v: V) -> V where V.Scalar: FloatingPoint {
 public func cross<Scalar: SIMDScalar & FloatingPoint>(_ a: SIMD3<Scalar>, _ b: SIMD3<Scalar>) -> SIMD3<Scalar> {
     simd_cross(a, b)
 }
+
+@inlinable
+public func mix<V: SIMD>(_ x: V, _ y: V, t: V) -> V where V.Scalar: FloatingPoint {
+    simd_mix(x, y, t)
+}
+
+@inlinable
+public func mix<V: SIMD>(_ x: V, _ y: V, t: V.Scalar) -> V where V.Scalar: FloatingPoint {
+    x + t * (y - x)
+}

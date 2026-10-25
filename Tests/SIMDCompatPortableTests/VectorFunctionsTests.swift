@@ -48,6 +48,10 @@ struct VectorFunctionsTests {
             let c = SIMD3(a.x, a.y, a.z)
             let d = SIMD3(b.x, b.y, b.z)
             #expect(isClose(SIMDCompatPortable.cross(c, d), simd.cross(c, d)))
+            let t = inputs.vector4()
+            let s = inputs.scalar()
+            #expect(isClose(SIMDCompatPortable.mix(a, b, t: t), simd.mix(a, b, t: t)))
+            #expect(isClose(SIMDCompatPortable.mix(c, d, t: s), simd.mix(c, d, t: s)))
         }
     }
 
